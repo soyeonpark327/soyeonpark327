@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6EE7F9,100:F0C987&height=220&section=header&text=Soyeon%20Park&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Backend%20%26%20OCR%20Developer&descAlignY=58&descSize=18" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6EE7F9,100:F0C987&height=220&section=header&text=Soyeon%20Park&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Backend%20%2F%20OCR%20Developer&descAlignY=58&descSize=18" width="100%"/>
 
 <a href="https://www.gitanimals.org/en_US?utm_medium=image&utm_source=soyeonpark327&utm_content=farm">
 <img
