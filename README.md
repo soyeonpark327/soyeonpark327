@@ -1,3 +1,9 @@
+# 안녕하세요, 박소연입니다 👋
+
+한국어 콘텐츠를 다국어로 현지화하는 OCR·번역 파이프라인에 관심이 많은 개발자입니다.
+
+📫 s2608@e-mirim.hs.kr
+
 <a href="https://www.gitanimals.org/en_US?utm_medium=image&utm_source=soyeonpark327&utm_content=farm">
 <img
   src="https://render.gitanimals.org/farms/soyeonpark327"
