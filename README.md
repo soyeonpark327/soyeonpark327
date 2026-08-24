@@ -1,6 +1,5 @@
 # 안녕하세요, 박소연입니다 👋
 
-현재 개발 공부를 하기 위해 미림마이스터고등학교에 다니고 있습니다.
 
 <a href="https://www.gitanimals.org/en_US?utm_medium=image&utm_source=soyeonpark327&utm_content=farm">
 <img
