@@ -2,8 +2,6 @@
 
 현재 개발 공부를 하기 위해 미림마이스터고등학교에 다니고 있습니다.
 
-📫 s2608@e-mirim.hs.kr
-
 <a href="https://www.gitanimals.org/en_US?utm_medium=image&utm_source=soyeonpark327&utm_content=farm">
 <img
   src="https://render.gitanimals.org/farms/soyeonpark327"
