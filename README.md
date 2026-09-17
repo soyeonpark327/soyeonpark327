@@ -25,3 +25,4 @@
 - 이미지 배경 정리(cleanup) 안전 임계값 버그 진단·수정 — 단색/투명 배경에서 정상적인 지우기 비율(71~87%)을 위험으로 오판해 수동 처리로 빠지던 문제를 실제 파이프라인 재현·측정으로 근본 원인 규명 후 수정, manual cleanup 비율 3/8 → 0/8로 개선 ([#46](https://github.com/Linkshimcat/Glocalizer/pull/46))
 - 실사용 이미지 재현으로 Luna OCR의 캡션 분절 비결정성 발견·수정 — 같은 캡션이 호출마다 다르게 쪼개져 클린업이 부분적으로만 성공하던 문제를, 기존 PaddleOCR용 같은 줄 병합 로직을 재사용해 provider 무관하게 해결 ([#47](https://github.com/Linkshimcat/Glocalizer/pull/47))
 - Vision LLM(Luna) OCR 오독 안전망 설계·구현 — 반복 호출해도 신뢰도 점수로 정답/오답을 구분 못 하는 사례를 실측으로 확인하고, PaddleOCR와 결과를 대조해 불일치 시 자동승인 대신 검수로 전환하도록 처리, 크기가 다른 박스 간 대조를 위해 IoU 대신 겹침 비율 지표 직접 설계 ([#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
+- 반복 패턴 배경 인페인팅 스머지 문제 해결 — 색 분산 기반 가설을 실측으로 반증한 뒤, 자기상관(autocorrelation)의 트로프+리바운드 패턴으로 배경의 주기성을 직접 감지하는 알고리즘을 설계해 그라디언트 오탐 없이 반복 패턴만 정확히 걸러내도록 구현 ([#49](https://github.com/Linkshimcat/Glocalizer/pull/49))
