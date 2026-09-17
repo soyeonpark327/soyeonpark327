@@ -23,3 +23,4 @@
 - 폐기된 번역 모델(Groq) 대응 — 공식 문서 기반 사실 확인 후 대체 모델로 교체 ([#27](https://github.com/Linkshimcat/Glocalizer/pull/27))
 - OCR 엔진 벤치마크 및 아키텍처 전환 — PIL 기반 ground truth 측정과 IoU 지표로 PaddleOCR·Gemini·GPT 3개 provider를 직접 비교 평가하고, 정확도·안정성·비용을 종합해 주력 OCR 엔진 교체 (PaddleOCR IoU 0.637 → GPT-5.6 Luna 0.914) ([#29](https://github.com/Linkshimcat/Glocalizer/pull/29))
 - 이미지 배경 정리(cleanup) 안전 임계값 버그 진단·수정 — 단색/투명 배경에서 정상적인 지우기 비율(71~87%)을 위험으로 오판해 수동 처리로 빠지던 문제를 실제 파이프라인 재현·측정으로 근본 원인 규명 후 수정, manual cleanup 비율 3/8 → 0/8로 개선 ([#46](https://github.com/Linkshimcat/Glocalizer/pull/46))
+- 실사용 이미지 재현으로 Luna OCR의 캡션 분절 비결정성 발견·수정 — 같은 캡션이 호출마다 다르게 쪼개져 클린업이 부분적으로만 성공하던 문제를, 기존 PaddleOCR용 같은 줄 병합 로직을 재사용해 provider 무관하게 해결 ([#47](https://github.com/Linkshimcat/Glocalizer/pull/47))
