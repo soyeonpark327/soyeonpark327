@@ -28,3 +28,4 @@
 - 반복 패턴 배경 인페인팅 스머지 문제 해결 — 색 분산 기반 가설을 실측으로 반증한 뒤, 자기상관(autocorrelation)의 트로프+리바운드 패턴으로 배경의 주기성을 직접 감지하는 알고리즘을 설계해 그라디언트 오탐 없이 반복 패턴만 정확히 걸러내도록 구현 ([#49](https://github.com/Linkshimcat/Glocalizer/pull/49))
 - 클린업 잔상 버그 근본 원인 규명·수정 — mask 자체는 완전한데 옅은 글자 잔상이 남는 현상을 mask만 따로 렌더링해 직접 검증하며 원인을 배경색 추정 로직으로 좁히고, 참조 픽셀이 mask상 글자로 표시된 경우를 걸러내도록 수정 ([#50](https://github.com/Linkshimcat/Glocalizer/pull/50))
 - 사용자 제보("배경 단순한데 복잡하다고 뜸") 실시간 진단·수정 — 배경 분류 자체는 정상임을 먼저 검증해 원인을 OCR 대조 단계로 좁히고, PaddleOCR가 놓치기 쉬운 문장 끝 구두점 차이를 실제 오독과 구분하도록 대조 로직 보정 ([#55](https://github.com/Linkshimcat/Glocalizer/pull/55))
+- 위 수정의 후속으로 에디터 UX 오류까지 추적·수정 — 원인이 배경이 아니라 OCR 검수 필요일 때도 "복잡한 배경" 문구가 뜨던 3곳(안내 문구·지우기 탭·토스트)을 실제 원인 기준으로 분기, 4개 언어 문구 신규 작성 ([#57](https://github.com/Linkshimcat/Glocalizer/pull/57))
