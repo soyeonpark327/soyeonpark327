@@ -17,7 +17,14 @@
 ### [Glocalizer](https://github.com/Linkshimcat/Glocalizer)
 한국어 이모티콘을 다국어로 현지화하는 SaaS (NAVER OGQ마켓 AI 공모전 출품작). Node.js/TypeScript 백엔드, React 프론트엔드, PaddleOCR·LLM 기반 OCR/번역 파이프라인.
 
-**담당 작업**
+**담당 작업 하이라이트** — 전체 기록은 [portfolio 레포](https://github.com/soyeonpark327/portfolio) 참고
+- OCR 엔진 벤치마크 및 아키텍처 전환 — IoU 지표로 PaddleOCR·Gemini·GPT 3개 provider를 직접 비교 평가해 주력 엔진 교체 (IoU 0.637 → 0.914) ([#29](https://github.com/Linkshimcat/Glocalizer/pull/29))
+- 배경 정리(cleanup) 최난도 케이스(그라데이션·사진 노이즈·물방울무늬) 합성 벤치마크로 측정해 근본 해결 ([#93](https://github.com/Linkshimcat/Glocalizer/pull/93))
+- 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
+
+<details>
+<summary>전체 작업 내역 보기 (23건)</summary>
+
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
 - 폐기된 번역 모델(Groq) 대응 — 공식 문서 기반 사실 확인 후 대체 모델로 교체 ([#27](https://github.com/Linkshimcat/Glocalizer/pull/27))
@@ -41,3 +48,5 @@
 - 클린업의 구조적 한계(글자를 일부만 지우고도 "성공" 기록)를 측정 기반으로 보완 — 글자/배경 레이어를 따로 렌더링해 정답 마스크를 자동 생성하는 17종 합성 벤치마크(잔상·부수 피해·박스 흔들림 안정성)를 만들어 기준선을 잡고, 벤치마크가 찾아낸 결함 2개(글자에 붙은 캐릭터 1,922px 훼손, 줄무늬 배경 3,000px 훼손)를 수정. 두께 기준 필터가 네온·외곽선 글자를 지워 회귀를 일으키자 "범위 경계를 넘어 이어지는가"로 기준을 바꿔 해결하고, 실제 코퍼스에서 정상 이미지를 오탐하는 것까지 잡아 임계값 조정. 정리 후 OCR 재검증(미탐·오탐 실측)과, 결과를 OCR 박스 영역 안에만 합성해 박스 밖 픽셀을 보존하는 이미지 편집 API 폴백(기본 꺼짐, 호출 상한)을 설계해 실제 API 호출로 검증 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85))
 - 번역 품질을 측정으로 개선하는 평가 벤치마크 설계·구현 — 호스팅 모델이라 가중치 학습이 불가능한 점을 전제로, 한국어 이모티콘 문구 73개 데이터셋 + 결정론 검사(글자 수·한글 잔존) + LLM 심사(gpt-5.6, gpt-5.5 교차검증)로 프롬프트·모델·추론 강도를 비교. 기존 BEST 후보가 평균 후보보다도 낮았다는 걸 수치로 확인하고(충실도 3.16) "가장 웃긴 것"이 아닌 "원어민이 가장 높게 평가할 것"으로 기준을 재정의, 종합 3.74 → 4.88. Groq 무료 티어의 분당 출력 토큰 한도(≈2캡션/분)가 처리량 병목임을 실측해 OpenAI 주력 + Groq fallback 구조로 전환 ([#86](https://github.com/Linkshimcat/Glocalizer/pull/86))
 - 클린업의 남은 어려운 유형(강한 그라데이션, 사진 노이즈 배경, 물방울무늬)을 합성 벤치마크로 측정해 근본 해결 — 항상 대표색 하나로 채우던 방식 대신, OCR 박스 링에 평면을 최소자승으로 맞춰 위치별 배경색을 예측하고 노이즈 배경엔 같은 크기의 결정적 노이즈를 얹어 얼룩이 안 보이게 함(그라데이션 0%→100%, 사진 노이즈 0%→100% 통과). 물방울무늬는 링 색 편차가 낮아 무늬 검사 자체를 건너뛰어 박스가 살짝만 흔들려도 판정이 뒤집히던 걸(63% 안정성) 조건을 재설계해 완전히 안정화(100%) ([#93](https://github.com/Linkshimcat/Glocalizer/pull/93))
+
+</details>
