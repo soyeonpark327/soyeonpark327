@@ -20,10 +20,11 @@
 **담당 작업 하이라이트** — 전체 기록은 [portfolio 레포](https://github.com/soyeonpark327/portfolio) 참고
 - OCR 엔진 벤치마크 및 아키텍처 전환 — IoU 지표로 PaddleOCR·Gemini·GPT 3개 provider를 직접 비교 평가해 주력 엔진 교체 (IoU 0.637 → 0.914) ([#29](https://github.com/Linkshimcat/Glocalizer/pull/29))
 - 배경 정리(cleanup) 최난도 케이스(그라데이션·사진 노이즈·물방울무늬) 합성 벤치마크로 측정해 근본 해결 ([#93](https://github.com/Linkshimcat/Glocalizer/pull/93))
+- 이모티콘 생성 페이지에서 프로젝트 완료 확정 시 새 작업 페이지로 자동 전환 — 완료 후 수동으로 "새 작업" 버튼을 다시 눌러야 했던 흐름을 자동화. 클릭 시점 렌더에 묶인 activeProject 값을 그대로 쓰면 방금 완료한 프로젝트 자신을 "진행 중"으로 오판해 전환이 막히는 버그를 미리 발견해, 완료 반영 후 재조회한 최신 목록으로 다시 판정하도록 고쳐 피함 ([#115](https://github.com/Linkshimcat/Glocalizer/pull/115))
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (23건)</summary>
+<summary>전체 작업 내역 보기 (24건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
