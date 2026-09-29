@@ -23,7 +23,7 @@
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (24건)</summary>
+<summary>전체 작업 내역 보기 (25건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
@@ -49,5 +49,6 @@
 - 번역 품질을 측정으로 개선하는 평가 벤치마크 설계·구현 — 호스팅 모델이라 가중치 학습이 불가능한 점을 전제로, 한국어 이모티콘 문구 73개 데이터셋 + 결정론 검사(글자 수·한글 잔존) + LLM 심사(gpt-5.6, gpt-5.5 교차검증)로 프롬프트·모델·추론 강도를 비교. 기존 BEST 후보가 평균 후보보다도 낮았다는 걸 수치로 확인하고(충실도 3.16) "가장 웃긴 것"이 아닌 "원어민이 가장 높게 평가할 것"으로 기준을 재정의, 종합 3.74 → 4.88. Groq 무료 티어의 분당 출력 토큰 한도(≈2캡션/분)가 처리량 병목임을 실측해 OpenAI 주력 + Groq fallback 구조로 전환 ([#86](https://github.com/Linkshimcat/Glocalizer/pull/86))
 - 클린업의 남은 어려운 유형(강한 그라데이션, 사진 노이즈 배경, 물방울무늬)을 합성 벤치마크로 측정해 근본 해결 — 항상 대표색 하나로 채우던 방식 대신, OCR 박스 링에 평면을 최소자승으로 맞춰 위치별 배경색을 예측하고 노이즈 배경엔 같은 크기의 결정적 노이즈를 얹어 얼룩이 안 보이게 함(그라데이션 0%→100%, 사진 노이즈 0%→100% 통과). 물방울무늬는 링 색 편차가 낮아 무늬 검사 자체를 건너뛰어 박스가 살짝만 흔들려도 판정이 뒤집히던 걸(63% 안정성) 조건을 재설계해 완전히 안정화(100%) ([#93](https://github.com/Linkshimcat/Glocalizer/pull/93))
 - 이모티콘 생성 페이지에서 프로젝트 완료 확정 시 새 작업 페이지로 자동 전환 — 완료 후 수동으로 "새 작업" 버튼을 다시 눌러야 했던 흐름을 자동화. 클릭 시점 렌더에 묶인 activeProject 값을 그대로 쓰면 방금 완료한 프로젝트 자신을 "진행 중"으로 오판해 전환이 막히는 버그를 미리 발견해, 완료 반영 후 재조회한 최신 목록으로 다시 판정하도록 고쳐 피함 ([#115](https://github.com/Linkshimcat/Glocalizer/pull/115))
+- 이모티콘 생성 완료 화면에 노출되던 내부 비용·예산 안내 문구 제거 — 예산 집행 로직은 그대로 두고 사용자 화면 노출만 없앰 ([#116](https://github.com/Linkshimcat/Glocalizer/pull/116))
 
 </details>
