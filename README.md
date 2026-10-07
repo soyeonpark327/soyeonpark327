@@ -23,7 +23,7 @@
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (26건)</summary>
+<summary>전체 작업 내역 보기 (27건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
@@ -51,5 +51,6 @@
 - 이모티콘 생성 페이지에서 프로젝트 완료 확정 시 새 작업 페이지로 자동 전환 — 완료 후 수동으로 "새 작업" 버튼을 다시 눌러야 했던 흐름을 자동화. 클릭 시점 렌더에 묶인 activeProject 값을 그대로 쓰면 방금 완료한 프로젝트 자신을 "진행 중"으로 오판해 전환이 막히는 버그를 미리 발견해, 완료 반영 후 재조회한 최신 목록으로 다시 판정하도록 고쳐 피함 ([#115](https://github.com/Linkshimcat/Glocalizer/pull/115))
 - 이모티콘 생성 완료 화면에 노출되던 내부 비용·예산 안내 문구 제거 — 예산 집행 로직은 그대로 두고 사용자 화면 노출만 없앰 ([#116](https://github.com/Linkshimcat/Glocalizer/pull/116))
 - 팀 README를 실제 코드 기준으로 갱신 — 초기 정보에 머물러 있던 기술 스택·기능 설명을 실측으로 교체. 번역 주력이 문서엔 "Groq"로 남아있었지만 실제(`render.yaml`)는 이미 OpenAI GPT-5.6로 바뀌어 있던 것, `package.json` 대조로 표에서 빠져있던 의존성(구글 로그인용 `@supabase/supabase-js` 등)을 찾아 반영하고 라이선스는 설치된 패키지의 실제 `package.json`에서 직접 확인 ([#117](https://github.com/Linkshimcat/Glocalizer/pull/117))
+- 팀원 보고로 안드로이드 일부 기종에서 상단 메뉴 한글이 음절 중간("시작하 기")에서 줄바꿈되는 버그 재현·수정 — 공용 Button 컴포넌트는 whitespace-nowrap이 내장돼 랜딩 CTA는 멀쩡했지만, 상단 네비게이션은 별도로 만든 버튼이라 이 속성이 빠져 있던 걸 컴포넌트 단위로 대조해 찾아냄 ([#121](https://github.com/Linkshimcat/Glocalizer/pull/121))
 
 </details>
