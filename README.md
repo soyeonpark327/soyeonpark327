@@ -23,7 +23,7 @@
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (28건)</summary>
+<summary>전체 작업 내역 보기 (29건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
@@ -53,5 +53,6 @@
 - 팀 README를 실제 코드 기준으로 갱신 — 초기 정보에 머물러 있던 기술 스택·기능 설명을 실측으로 교체. 번역 주력이 문서엔 "Groq"로 남아있었지만 실제(`render.yaml`)는 이미 OpenAI GPT-5.6로 바뀌어 있던 것, `package.json` 대조로 표에서 빠져있던 의존성(구글 로그인용 `@supabase/supabase-js` 등)을 찾아 반영하고 라이선스는 설치된 패키지의 실제 `package.json`에서 직접 확인 ([#117](https://github.com/Linkshimcat/Glocalizer/pull/117))
 - 팀원 보고로 안드로이드 일부 기종에서 상단 메뉴 한글이 음절 중간("시작하 기")에서 줄바꿈되는 버그 재현·수정 — 공용 Button 컴포넌트는 whitespace-nowrap이 내장돼 랜딩 CTA는 멀쩡했지만, 상단 네비게이션은 별도로 만든 버튼이라 이 속성이 빠져 있던 걸 컴포넌트 단위로 대조해 찾아냄 ([#121](https://github.com/Linkshimcat/Glocalizer/pull/121))
 - W5/W6 실사용자 보고서가 지목한 다운로드 전환율(27.3%) 저해 요인 3가지를 코드로 보완 — 일부 실패해도 상단이 항상 "준비됐어요"로만 뜨던 걸 실패 개수를 세어 경고로 전환, 촘촘한 썸네일 그리드에 묻혀있던 "글자 잔존" 경고를 Editor와 같은 배너 스타일로 격상, 미리보기 열 수를 줄여 카드를 키우고 확대 가능 여부를 돋보기 아이콘으로 드러냄 ([#124](https://github.com/Linkshimcat/Glocalizer/pull/124))
+- "기존 글자가 남는다"는 실사용 피드백의 근본 원인 1건을 벤치마크로 재현·수정 — 다른 팀원이 추가해둔 ocr-tight-* 시나리오(OCR 박스가 글자 가장자리를 깊이 잘라낸 경우)가 easy 세트인데도 75%만 통과하는 걸 발견. 패딩을 늘리는 방식은 다른 시나리오에서 회귀를 일으켜 버리고, 연결성분 유지 임계값(0.35→0.3)을 여러 값으로 스윕해 회귀 없이 고치는 최소 변경을 찾음 — 이 변경을 되돌리면 기존 회귀 가드 테스트가 스스로 실패하는 것까지 확인 ([#125](https://github.com/Linkshimcat/Glocalizer/pull/125))
 
 </details>
