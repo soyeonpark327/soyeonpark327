@@ -23,7 +23,7 @@
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (30건)</summary>
+<summary>전체 작업 내역 보기 (31건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
@@ -55,5 +55,6 @@
 - W5/W6 실사용자 보고서가 지목한 다운로드 전환율(27.3%) 저해 요인 3가지를 코드로 보완 — 일부 실패해도 상단이 항상 "준비됐어요"로만 뜨던 걸 실패 개수를 세어 경고로 전환, 촘촘한 썸네일 그리드에 묻혀있던 "글자 잔존" 경고를 Editor와 같은 배너 스타일로 격상, 미리보기 열 수를 줄여 카드를 키우고 확대 가능 여부를 돋보기 아이콘으로 드러냄 ([#124](https://github.com/Linkshimcat/Glocalizer/pull/124))
 - "기존 글자가 남는다"는 실사용 피드백의 근본 원인 1건을 벤치마크로 재현·수정 — 다른 팀원이 추가해둔 ocr-tight-* 시나리오(OCR 박스가 글자 가장자리를 깊이 잘라낸 경우)가 easy 세트인데도 75%만 통과하는 걸 발견. 패딩을 늘리는 방식은 다른 시나리오에서 회귀를 일으켜 버리고, 연결성분 유지 임계값(0.35→0.3)을 여러 값으로 스윕해 회귀 없이 고치는 최소 변경을 찾음 — 이 변경을 되돌리면 기존 회귀 가드 테스트가 스스로 실패하는 것까지 확인 ([#125](https://github.com/Linkshimcat/Glocalizer/pull/125))
 - 여러 캐릭터를 한 번에 등록하면 사람 개입 없이 자동으로 캐릭터 24장 세트를 순서대로 완성하는 일괄 생성 기능 — 새 백엔드 엔드포인트 없이 기존 API를 폴링 기반 오케스트레이션으로 연결. action()이 실패해도 예외를 던지지 않는 기존 패턴 때문에 자칫 실패한 캐릭터가 큐에서 조용히 사라질 수 있던 걸 "성공 확인 전엔 큐에서 빼지 않는다"는 규칙으로 방지하고, 서버가 소유자당 active 프로젝트 1개만 허용하는 제약을 이용해 사용자가 지난 프로젝트를 구경하는 동안 엉뚱한 프로젝트를 자동 확정하지 않도록 가드 ([#126](https://github.com/Linkshimcat/Glocalizer/pull/126))
+- OCR이 한글 문구를 하나도 못 찾은 이모티콘을 "번역 실패"로 끝내는 대신, Groq Vision으로 감정·동작·상황을 분석해 한국어 문구 3안을 추천하고 직접 입력도 가능하게 하는 신규 기능 설계·구현 — 업로드 후 감지 → AI 분석·추천 → 일괄 검토 → 에디터 4단계 페이지를 새로 추가하고, 새 백엔드 엔드포인트 하나만 추가해 기존 OCR 리전 추가·재처리 메커니즘을 그대로 재사용. 실제 계정으로 Playwright E2E 검증 중 projectStatus가 completed로 바뀌는 시점과 파일 analysis 데이터가 채워지는 시점 사이의 레이스로 텍스트 없는 이미지가 있어도 에디터로 바로 넘어가버리는 버그를 발견해 수정 ([#142](https://github.com/Linkshimcat/Glocalizer/pull/142))
 
 </details>
