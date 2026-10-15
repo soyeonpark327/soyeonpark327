@@ -23,7 +23,7 @@
 - 클린업 정확도를 17종 합성 벤치마크로 측정·개선, OCR 오독 안전망 설계 등 파이프라인 신뢰성 다수 개선 ([#85](https://github.com/Linkshimcat/Glocalizer/pull/85), [#48](https://github.com/Linkshimcat/Glocalizer/pull/48))
 
 <details>
-<summary>전체 작업 내역 보기 (32건)</summary>
+<summary>전체 작업 내역 보기 (33건)</summary>
 
 - OCR 줄바꿈 병합 로직 개선 — 여러 줄로 나뉜 한글 캡션을 하나의 영역으로 정확히 병합하도록 수정 ([#24](https://github.com/Linkshimcat/Glocalizer/pull/24))
 - 이모티콘 변환 완주(다운로드) 횟수 카운팅 기능 설계·구현 — DB 스키마부터 API, 프론트 연동, 관리자 키 기반 접근 제어까지 ([#25](https://github.com/Linkshimcat/Glocalizer/pull/25), [#26](https://github.com/Linkshimcat/Glocalizer/pull/26))
@@ -57,5 +57,6 @@
 - 여러 캐릭터를 한 번에 등록하면 사람 개입 없이 자동으로 캐릭터 24장 세트를 순서대로 완성하는 일괄 생성 기능 — 새 백엔드 엔드포인트 없이 기존 API를 폴링 기반 오케스트레이션으로 연결. action()이 실패해도 예외를 던지지 않는 기존 패턴 때문에 자칫 실패한 캐릭터가 큐에서 조용히 사라질 수 있던 걸 "성공 확인 전엔 큐에서 빼지 않는다"는 규칙으로 방지하고, 서버가 소유자당 active 프로젝트 1개만 허용하는 제약을 이용해 사용자가 지난 프로젝트를 구경하는 동안 엉뚱한 프로젝트를 자동 확정하지 않도록 가드 ([#126](https://github.com/Linkshimcat/Glocalizer/pull/126))
 - OCR이 한글 문구를 하나도 못 찾은 이모티콘을 "번역 실패"로 끝내는 대신, Groq Vision으로 감정·동작·상황을 분석해 한국어 문구 3안을 추천하고 직접 입력도 가능하게 하는 신규 기능 설계·구현 — 업로드 후 감지 → AI 분석·추천 → 일괄 검토 → 에디터 4단계 페이지를 새로 추가하고, 새 백엔드 엔드포인트 하나만 추가해 기존 OCR 리전 추가·재처리 메커니즘을 그대로 재사용. 실제 계정으로 Playwright E2E 검증 중 projectStatus가 completed로 바뀌는 시점과 파일 analysis 데이터가 채워지는 시점 사이의 레이스로 텍스트 없는 이미지가 있어도 에디터로 바로 넘어가버리는 버그를 발견해 수정 ([#142](https://github.com/Linkshimcat/Glocalizer/pull/142))
 - 다크 모드 지원 설계·구현 — 색상을 CSS 커스텀 프로퍼티로 토큰화해 다크 모드일 때 값만 바꿔치기하는 구조로 정리하고, 아직 하나하나 다듬지 않은 페이지도 대비가 깨지지 않도록 전역 세이프티넷을 깔아 둠. 작업 중 기존에 중복돼 있던 CSS 변수 체계 2개(studio.css·experience.css)를 발견해 나중에 로드되는 쪽이 실제로 배경색을 덮어쓰고 있다는 걸 확인하고 반영. 에디터·결과 페이지는 실제 OCR·번역 파이프라인을 끝까지 돌려서 라이브로 검증, 그 과정에서 숨겨져 있던 밝은 배경 카드 1곳을 추가로 발견해 수정 ([#148](https://github.com/Linkshimcat/Glocalizer/pull/148))
+- 다크 모드 머지 직후 사용자 제보로 가격 페이지 글자가 안 보이는 버그 발견·수정 — 다른 PR로 새로 추가된 페이지라 다크 대응이 전혀 없었는데, 텍스트 색은 고정 어두운 색인 채 배경만 전역 세이프티넷으로 어두워지면서 어두운 글자 위에 어두운 배경이 겹친 게 원인. 같은 패턴이 또 있는지 전체 CSS를 훑어 재발 방지까지 처리. 겸사겸사 처음엔 범위 밖으로 뒀던 랜딩 페이지도 다크 모드로 확장 ([#149](https://github.com/Linkshimcat/Glocalizer/pull/149))
 
 </details>
